@@ -15,4 +15,8 @@ var traceProvider = Sdk.CreateTracerProviderBuilder()
             new KeyValuePair<string, object>("host.environment", Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")),
         });
     })
+    .AddConsoleExporter()
     .Build();
+
+var serviceHelper = new ServiceHelper();
+serviceHelper.Work1();
