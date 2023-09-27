@@ -6,8 +6,7 @@ internal class ServiceHelper
     {
         using var activity = ActivitySourceProvider.Source.StartActivity();
 
-        var googleService = new GoogleService();
-        int length = googleService.RequestToGoogleAsync().Result;
+        int length = GoogleService.RequestToGoogleAsync().Result;
 
         Console.WriteLine($"google response length: {length}");
 
