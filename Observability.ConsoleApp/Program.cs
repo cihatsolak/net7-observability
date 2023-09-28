@@ -17,6 +17,10 @@ using var traceProvider = Sdk.CreateTracerProviderBuilder()
     })
     .AddConsoleExporter()
     .AddOtlpExporter() //jeager ui
+    .AddZipkinExporter(zp =>
+    {
+        zp.Endpoint = new Uri("http://localhost:9411/api/v2/spans");
+    })
     .Build();  
 
 var serviceHelper = new ServiceHelper();
