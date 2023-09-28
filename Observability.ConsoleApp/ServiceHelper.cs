@@ -6,11 +6,9 @@ internal class ServiceHelper
     {
         using var activity = ActivitySourceProvider.Source.StartActivity();
 
-        int length = GoogleService.RequestToGoogleAsync().Result;
-
-        Console.WriteLine($"google response length: {length}");
-
-
+        int googleResponseLength = GoogleService.RequestToGoogleAsync().Result;
+               
+        Console.WriteLine($"google response length: {googleResponseLength}");
         Console.WriteLine("Work1 tamamlandı.");
     }
 }

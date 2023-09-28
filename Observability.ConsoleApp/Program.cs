@@ -2,7 +2,7 @@
 
 Console.WriteLine("Hello, World!");
 
-var traceProvider = Sdk.CreateTracerProviderBuilder()
+using var traceProvider = Sdk.CreateTracerProviderBuilder()
     .AddSource(OpenTelemetryConstants.ActivitySourceName)
     .ConfigureResource(configure =>
     {
@@ -16,6 +16,7 @@ var traceProvider = Sdk.CreateTracerProviderBuilder()
         });
     })
     .AddConsoleExporter()
+    .AddOtlpExporter() //jeager ui
     .Build();  
 
 var serviceHelper = new ServiceHelper();
