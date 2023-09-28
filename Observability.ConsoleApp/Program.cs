@@ -2,6 +2,23 @@
 
 Console.WriteLine("Hello, World!");
 
+ActivitySource.AddActivityListener(new ActivityListener() //Custom olarak bir activity dinlemek istediğimde
+{
+    ShouldListenTo = source => source.Name == OpenTelemetryConstants.ActivitySourceFileName,
+    ActivityStarted = activity =>
+    {
+        Console.WriteLine("Activity started.");
+    },
+    ActivityStopped = activity =>
+    {
+        Console.WriteLine("Activity stopped.");
+    }
+});
+
+using var traceProviderFile = Sdk.CreateTracerProviderBuilder()
+        .AddSource(OpenTelemetryConstants.ActivitySourceFileName)
+        .Build();
+
 using var traceProvider = Sdk.CreateTracerProviderBuilder()
     .AddSource(OpenTelemetryConstants.ActivitySourceName)
     .ConfigureResource(configure =>
@@ -25,3 +42,4 @@ using var traceProvider = Sdk.CreateTracerProviderBuilder()
 
 var serviceHelper = new ServiceHelper();
 serviceHelper.Work1();
+serviceHelper.Work2();
