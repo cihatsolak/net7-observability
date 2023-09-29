@@ -1,4 +1,4 @@
-﻿namespace Order.API.OpenTelemetry
+﻿namespace OrderAPI.OpenTelemetry
 {
     public static class ActivitySourceProvider
     {

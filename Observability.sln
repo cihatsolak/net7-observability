@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Observability.ConsoleApp", 
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E56D7E3B-E4D3-49BE-9636-FFE5EE40730C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.API", "Order.API\Order.API.csproj", "{DEADC6BC-2E0E-4C2D-9CF8-332B175E1991}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderAPI", "Order.API\OrderAPI.csproj", "{DEADC6BC-2E0E-4C2D-9CF8-332B175E1991}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

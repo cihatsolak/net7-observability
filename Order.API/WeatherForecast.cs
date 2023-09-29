@@ -1,4 +1,4 @@
-namespace Order.API
+namespace OrderAPI
 {
     public class WeatherForecast
     {

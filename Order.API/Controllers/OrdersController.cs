@@ -1,11 +1,11 @@
-﻿namespace Order.API.Controllers
+﻿namespace OrderAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class OrdersController : ControllerBase
     {
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult PreparedForErrorExample()
         {
             int number1 = 10;
             int number2 = 0;
