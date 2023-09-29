@@ -25,8 +25,8 @@
         [HttpPost]
         public async Task<IActionResult> Create(OrderCreateRequest request)
         {
-            await _orderService.AddAsync(request);
-            return Ok();       
+            var response = await _orderService.AddAsync(request);
+            return Ok(response);       
         }
     }
 }

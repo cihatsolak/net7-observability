@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderAPI", "Order.API\Order
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.Shared", "OpenTelemetry.Shared\OpenTelemetry.Shared.csproj", "{652A68BE-4C99-4162-A70B-4B3E15BA7F66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Shared", "Common.Shared\Common.Shared.csproj", "{DA44C96B-287F-4C1C-A04F-C6D2C4F01588}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{652A68BE-4C99-4162-A70B-4B3E15BA7F66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{652A68BE-4C99-4162-A70B-4B3E15BA7F66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{652A68BE-4C99-4162-A70B-4B3E15BA7F66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA44C96B-287F-4C1C-A04F-C6D2C4F01588}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA44C96B-287F-4C1C-A04F-C6D2C4F01588}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA44C96B-287F-4C1C-A04F-C6D2C4F01588}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA44C96B-287F-4C1C-A04F-C6D2C4F01588}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

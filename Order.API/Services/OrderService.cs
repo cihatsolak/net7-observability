@@ -2,7 +2,7 @@
 
 public class OrderService
 {
-    public Task AddAsync(OrderCreateRequest request)
+    public Task<OrderCreateResponse> AddAsync(OrderCreateRequest request)
     {
         //Ana aktiviteye tag eklemek
         Activity.Current.SetTag("AspNetCore (Instrumentation) Tag 1", "AspNetCore (Instrumentation) Tag Value");
@@ -17,6 +17,6 @@ public class OrderService
 
         activity.AddEvent(new ActivityEvent("The order process is completed."));
 
-        return Task.CompletedTask;
+        return Task.FromResult(new OrderCreateResponse { Id = new Random().Next(1, 500) });
     }
 }
