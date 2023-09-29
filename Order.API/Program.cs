@@ -16,7 +16,18 @@ builder.Services.AddOpenTelemetry().WithTracing(configure =>
             resource.AddService(openTelemetryConstants.ServiceName, serviceVersion: openTelemetryConstants.ServiceVersion);
         });
 
-    configure.AddAspNetCoreInstrumentation();
+    configure.AddAspNetCoreInstrumentation(options =>
+    {
+        options.Filter = (context) =>
+        {
+            // trace edilecekleri filtrele
+            // endpoint'de api geçenleri trace et.
+            return context.Request.Path.Value.Contains("api", StringComparison.OrdinalIgnoreCase); 
+        };
+
+        //Exception oluþursa stack trace kaydedilir. Default olarak stack trace kaydedilmez.
+        options.RecordException = true; 
+    });
     configure.AddConsoleExporter();
     configure.AddOtlpExporter(); //Jaeger
 });
