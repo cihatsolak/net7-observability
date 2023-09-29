@@ -4,6 +4,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<OrderService>();
+
 builder.Services.Configure<OpenTelemetryConstants>(builder.Configuration.GetSection("OpenTelemetry"));
 
 var openTelemetryConstants = builder.Configuration.GetSection("OpenTelemetry").Get<OpenTelemetryConstants>();

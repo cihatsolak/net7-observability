@@ -4,6 +4,13 @@
     [ApiController]
     public class OrdersController : ControllerBase
     {
+        readonly OrderService _orderService;
+
+        public OrdersController(OrderService orderService)
+        {
+            _orderService = orderService;
+        }
+
         [HttpGet]
         public IActionResult PreparedForErrorExample()
         {
@@ -13,6 +20,13 @@
             int result = number1 / number2; //divide by zero exception
 
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(OrderCreateRequest request)
+        {
+            await _orderService.AddAsync(request);
+            return Ok();       
         }
     }
 }
