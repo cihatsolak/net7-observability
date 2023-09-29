@@ -6,35 +6,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<OrderService>();
 
-builder.Services.Configure<OpenTelemetryConstants>(builder.Configuration.GetSection("OpenTelemetry"));
-
-var openTelemetryConstants = builder.Configuration.GetSection("OpenTelemetry").Get<OpenTelemetryConstants>();
-
-builder.Services.AddOpenTelemetry().WithTracing(configure =>
-{
-    configure.AddSource(openTelemetryConstants.ActivitySourceName)
-        .ConfigureResource(resource =>
-        {
-            resource.AddService(openTelemetryConstants.ServiceName, serviceVersion: openTelemetryConstants.ServiceVersion);
-        });
-
-    configure.AddAspNetCoreInstrumentation(options =>
-    {
-        options.Filter = (context) =>
-        {
-            // trace edilecekleri filtrele
-            // endpoint'de api geçenleri trace et.
-            return context.Request.Path.Value.Contains("api", StringComparison.OrdinalIgnoreCase); 
-        };
-
-        //Exception oluþursa stack trace kaydedilir. Default olarak stack trace kaydedilmez.
-        options.RecordException = true; 
-    });
-    configure.AddConsoleExporter();
-    configure.AddOtlpExporter(); //Jaeger
-});
-
-ActivitySourceProvider.Source = new ActivitySource(openTelemetryConstants.ActivitySourceName);
+builder.Services.AddOpenTelemetryConfiguration(builder.Configuration); //OpenTelemetry.Shared
 
 var app = builder.Build();
 
