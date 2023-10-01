@@ -8,12 +8,5 @@ public record OrderCreateRequest
     }
 
     public int UserId { get; set; }
-    public List<OrderItemRequest> Items { get; set; }
-}
-
-public record OrderItemRequest
-{
-    public int ProductId { get; set; }
-    public int Count { get; set; }
-    public int UnitPrice { get; set; }
+    public List<OrderItemDto> Items { get; set; }
 }

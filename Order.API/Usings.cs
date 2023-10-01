@@ -6,3 +6,4 @@ global using OrderAPI.Models;
 global using OrderAPI.RequestResponse;
 global using OrderAPI.Services;
 global using System.Diagnostics;
+global using Common.Shared.DTOs;
