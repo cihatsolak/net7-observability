@@ -28,7 +28,28 @@ public static class OpenTelemetryExtensions
 
                 //Exception oluşursa stack trace kaydedilir. Default olarak stack trace kaydedilmez.
                 options.RecordException = true;
+
+                // uygulama bir exception fırlattıgında buraya gelecek, istenirse ilgili exception'a ek özellikler eklenebilir.
+                options.EnrichWithException = (activity, exception) =>
+                {
+                    activity.SetTag("key1", "exception");
+                };
             });
+
+            configure.AddEntityFrameworkCoreInstrumentation(options =>
+            {
+                options.SetDbStatementForText = true; //db ifadelerini aktivite içerisine text olarak kaydedilim mi?
+                options.SetDbStatementForStoredProcedure = true;
+
+                //ekstra özellikler eklemek için
+                //sql cümleciğimi aktivite olarak her kaydettiğinde bu metot tetiklenir. isternirse yanına ek bilgi eklenebilir.
+                //ef core'un ürettiği aktiviteye tag'lar eventler eklenebilir.
+                options.EnrichWithIDbCommand = (activity, dbCommand) =>
+                {
+                    activity.SetTag("key1", "exception");
+                };
+            });
+
             configure.AddConsoleExporter();
             configure.AddOtlpExporter(); //Jaeger
         });

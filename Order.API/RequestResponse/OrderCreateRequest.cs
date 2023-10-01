@@ -7,7 +7,7 @@ public record OrderCreateRequest
         Items = new();
     }
 
-    public string UserId { get; set; }
+    public int UserId { get; set; }
     public List<OrderItemRequest> Items { get; set; }
 }
 
