@@ -10,6 +10,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 builder.Services.AddScoped<OrderService>();
 
+builder.Services.AddHttpClient<StockService>(options =>
+{
+    options.BaseAddress = new Uri(builder.Configuration["StockService"]);
+});
+
 builder.Services.AddOpenTelemetryConfiguration(builder.Configuration); //OpenTelemetry.Shared
 
 var app = builder.Build();

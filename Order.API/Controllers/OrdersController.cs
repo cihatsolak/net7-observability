@@ -26,7 +26,8 @@
         public async Task<IActionResult> Create(OrderCreateRequest request)
         {
             var response = await _orderService.AddAsync(request);
-            return Ok(response);       
+
+            return new ObjectResult(response) { StatusCode = response.StatusCode };
         }
     }
 }

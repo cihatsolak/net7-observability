@@ -50,6 +50,33 @@ public static class OpenTelemetryExtensions
                 };
             });
 
+            configure.AddHttpClientInstrumentation(options =>
+            {
+                options.EnrichWithHttpRequestMessage = async (activity, httpRequestMessage) =>
+                {
+                    string requestContent = "Empty Request!";
+
+                    if (httpRequestMessage.Content is not null)
+                    {
+                        requestContent = await httpRequestMessage.Content.ReadAsStringAsync();
+                    }
+
+                    activity.SetTag("http.request.body", requestContent);
+                };
+
+                options.EnrichWithHttpResponseMessage = async (activity, httpResponseMessage) =>
+                {
+                    string responseContent = "Empty Response!";
+
+                    if (httpResponseMessage.Content is not null)
+                    {
+                        responseContent = await httpResponseMessage.Content.ReadAsStringAsync();
+                    }
+
+                    activity.SetTag("http.response.body", responseContent);
+                };
+            });
+
             configure.AddConsoleExporter();
             configure.AddOtlpExporter(); //Jaeger
         });
