@@ -1,4 +1,6 @@
-﻿namespace StockAPI.Services;
+﻿using System.Diagnostics;
+
+namespace StockAPI.Services;
 
 public class StockService
 {
@@ -23,6 +25,9 @@ public class StockService
 
     public ResponseDto<StockCheckAndPaymentProcessResponseDto> CheckAndPaymentProcess(StockCheckAndPaymentProcessRequestDto request)
     {
+        //HttpContext.Request.Headers["Correlation-Context"];
+        string userId = Activity.Current.GetBaggageItem("userId");
+
         //Stock Check and payment process request
         var productStockList = GetStocks();
         var stockStatus = new List<(int productId, bool hasStockExist)>();

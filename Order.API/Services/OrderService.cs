@@ -22,6 +22,9 @@ public class OrderService
 
         activity.AddEvent(new ActivityEvent("The order process has started."));
 
+        //farklı bir api'den bu değere erişebilmek için
+        activity.SetBaggage("userId", request.UserId.ToString());
+
         //database operations
 
         var order = new Order
