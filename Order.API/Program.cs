@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -8,7 +10,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString(nameof(AppDbContext)));
 });
+
 builder.Services.AddScoped<OrderService>();
+
+builder.Services.AddSingleton<IConnectionMultiplexer>(opt => ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString(nameof(RedisService))));
+builder.Services.AddSingleton<RedisService>();
 
 builder.Services.AddHttpClient<StockService>(options =>
 {

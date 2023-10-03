@@ -1,4 +1,6 @@
-﻿namespace OrderAPI.Services;
+﻿using Order = OrderAPI.Models.Order;
+
+namespace OrderAPI.Services;
 
 public class OrderService
 {

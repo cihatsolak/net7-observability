@@ -77,6 +77,11 @@ public static class OpenTelemetryExtensions
                 };
             });
 
+            configure.AddRedisInstrumentation(options =>
+            {
+                options.SetVerboseDatabaseStatements = true;
+            });
+
             configure.AddConsoleExporter();
             configure.AddOtlpExporter(); //Jaeger
         });
