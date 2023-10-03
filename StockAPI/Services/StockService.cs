@@ -2,6 +2,13 @@
 
 public class StockService
 {
+    private readonly PaymentService _paymentService;
+
+    public StockService(PaymentService paymentService)
+    {
+        _paymentService = paymentService;
+    }
+
     public static Dictionary<int, int> GetStocks()
     {
         Dictionary<int, int> stocks = new()
@@ -32,9 +39,23 @@ public class StockService
             return ResponseDto<StockCheckAndPaymentProcessResponseDto>.Fail(StatusCodes.Status400BadRequest, "insufficient stock");
         }
 
+        var (succeeded, errorMessage) = _paymentService.CreatePaymentProcessAsync(new PaymentCreateRequestDto
+        {
+            OrderCode = request.OrderCode,
+            TotalPrice = request.OrderItems.Sum(p => (p.UnitPrice * p.Count))
+        }).Result;
+
+        if (!succeeded)
+        {
+            return ResponseDto<StockCheckAndPaymentProcessResponseDto>.Success(StatusCodes.Status200OK, new StockCheckAndPaymentProcessResponseDto
+            {
+                Description = errorMessage
+            });
+        }
+
         return ResponseDto<StockCheckAndPaymentProcessResponseDto>.Success(StatusCodes.Status200OK, new StockCheckAndPaymentProcessResponseDto
         {
-            Description = "Stock is reserved."
+            Description = "payment process completed."
         });
     }
 }

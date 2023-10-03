@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Shared", "Common.Sha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockAPI", "StockAPI\StockAPI.csproj", "{B2649DDB-1D1A-456F-BFF3-AC2686D48EC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentAPI", "PaymentAPI\PaymentAPI.csproj", "{064F6E50-958B-4181-940E-E8C859098FAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{B2649DDB-1D1A-456F-BFF3-AC2686D48EC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2649DDB-1D1A-456F-BFF3-AC2686D48EC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2649DDB-1D1A-456F-BFF3-AC2686D48EC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{064F6E50-958B-4181-940E-E8C859098FAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{064F6E50-958B-4181-940E-E8C859098FAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{064F6E50-958B-4181-940E-E8C859098FAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{064F6E50-958B-4181-940E-E8C859098FAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
