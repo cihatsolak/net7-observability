@@ -1,5 +1,3 @@
-using Microsoft.Extensions.Configuration;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -22,6 +20,18 @@ builder.Services.AddHttpClient<StockService>(options =>
 });
 
 builder.Services.AddOpenTelemetryConfiguration(builder.Configuration); //OpenTelemetry.Shared
+
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host("localhost", "/", host =>
+        {
+            host.Username("guest");
+            host.Username("guest");
+        });
+    });
+});
 
 var app = builder.Build();
 

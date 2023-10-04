@@ -8,3 +8,4 @@ global using OrderAPI.RequestResponse;
 global using OrderAPI.Services;
 global using StackExchange.Redis;
 global using System.Diagnostics;
+global using MassTransit;

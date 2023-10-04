@@ -1,6 +1,5 @@
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -12,6 +11,25 @@ builder.Services.AddOpenTelemetryConfiguration(builder.Configuration); //OpenTel
 builder.Services.AddHttpClient<PaymentService>(options =>
 {
     options.BaseAddress = new Uri(builder.Configuration[nameof(PaymentService)]);
+});
+
+builder.Services.AddMassTransit(x =>
+{
+    x.AddConsumer<OrderCreatedEventConsumer>();
+
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host("localhost", "/", host =>
+        {
+            host.Username("guest");
+            host.Username("guest");
+        });
+
+        cfg.ReceiveEndpoint("stock.order-created-event.queue", endpoint =>
+        {
+            endpoint.ConfigureConsumer<OrderCreatedEventConsumer>(context);
+        });
+    });
 });
 
 var app = builder.Build();

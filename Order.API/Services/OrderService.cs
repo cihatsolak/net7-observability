@@ -1,4 +1,5 @@
-﻿using Order = OrderAPI.Models.Order;
+﻿using Common.Shared.Events;
+using Order = OrderAPI.Models.Order;
 
 namespace OrderAPI.Services;
 
@@ -7,7 +8,9 @@ public class OrderService
     private readonly AppDbContext _context;
     private readonly StockService _stockService;
 
-    public OrderService(AppDbContext appDbContext, StockService stockService)
+    public OrderService(
+        AppDbContext appDbContext, 
+        StockService stockService)
     {
         _context = appDbContext;
         _stockService = stockService;

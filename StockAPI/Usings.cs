@@ -1,5 +1,10 @@
 ﻿global using Common.Shared;
 global using Common.Shared.DTOs;
+global using Common.Shared.Events;
+global using MassTransit;
 global using Microsoft.AspNetCore.Mvc;
 global using OpenTelemetry.Shared;
 global using StockAPI.Services;
+global using StockAPI.Consumers;
+global using System.Diagnostics;
+global using System.Text.Json;

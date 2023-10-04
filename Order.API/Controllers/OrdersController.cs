@@ -1,4 +1,6 @@
-﻿namespace OrderAPI.Controllers;
+﻿using Common.Shared.Events;
+
+namespace OrderAPI.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
@@ -6,13 +8,16 @@ public class OrdersController : ControllerBase
 {
     readonly OrderService _orderService;
     readonly RedisService _redisService;
+    readonly IPublishEndpoint _publishEndpoint;
 
     public OrdersController(
         OrderService orderService,
-        RedisService redisService)
+        RedisService redisService,
+        IPublishEndpoint publishEndpoint)
     {
         _orderService = orderService;
         _redisService = redisService;
+        _publishEndpoint = publishEndpoint;
     }
 
     [HttpGet]
@@ -45,5 +50,13 @@ public class OrdersController : ControllerBase
         string userId = _redisService.GetDatabase(5).StringGet("user-id");
 
         return Ok(userId);
+    }
+
+    [HttpGet("rabbitmq-test")]
+    public async Task<IActionResult> RabbitMqTest()
+    {
+        await _publishEndpoint.Publish(new OrderCreatedEvent(Guid.NewGuid().ToString())); //rabbitmq tracking
+
+        return Ok();
     }
 }
