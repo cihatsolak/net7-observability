@@ -11,7 +11,9 @@ public static class OpenTelemetryExtensions
 
         services.AddOpenTelemetry().WithTracing(configure =>
         {
-            configure.AddSource(openTelemetrySetting.ActivitySourceName)
+            configure
+                .AddSource(openTelemetrySetting.ActivitySourceName)
+                .AddSource(DiagnosticHeaders.DefaultListenerName) //Masstransit & rabbitmq
                 .ConfigureResource(resource =>
                 {
                     resource.AddService(openTelemetrySetting.ServiceName, serviceVersion: openTelemetrySetting.ServiceVersion);
@@ -81,6 +83,7 @@ public static class OpenTelemetryExtensions
             {
                 options.SetVerboseDatabaseStatements = true;
             });
+
 
             configure.AddConsoleExporter();
             configure.AddOtlpExporter(); //Jaeger
