@@ -24,6 +24,8 @@ namespace OrderAPI.Models
         public int Id { get; set; }
         public int ProductId { get; set; }
         public int Count { get; set; }
+
+        [Precision(18, 2)]
         public decimal Price { get; set; }
 
         [ForeignKey("OrderId")]

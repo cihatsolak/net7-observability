@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Observability.ConsoleApp", "Observability.ConsoleApp\Observability.ConsoleApp.csproj", "{B362C629-1E98-45FD-B94C-3D07FC0C0DB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Observability.ConsoleApp", "Observability.ConsoleApp\Observability.ConsoleApp.csproj", "{B362C629-1E98-45FD-B94C-3D07FC0C0DB6}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E56D7E3B-E4D3-49BE-9636-FFE5EE40730C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderAPI", "Order.API\OrderAPI.csproj", "{DEADC6BC-2E0E-4C2D-9CF8-332B175E1991}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderAPI", "Order.API\OrderAPI.csproj", "{DEADC6BC-2E0E-4C2D-9CF8-332B175E1991}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.Shared", "OpenTelemetry.Shared\OpenTelemetry.Shared.csproj", "{652A68BE-4C99-4162-A70B-4B3E15BA7F66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenTelemetry.Shared", "OpenTelemetry.Shared\OpenTelemetry.Shared.csproj", "{652A68BE-4C99-4162-A70B-4B3E15BA7F66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Shared", "Common.Shared\Common.Shared.csproj", "{DA44C96B-287F-4C1C-A04F-C6D2C4F01588}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Shared", "Common.Shared\Common.Shared.csproj", "{DA44C96B-287F-4C1C-A04F-C6D2C4F01588}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockAPI", "StockAPI\StockAPI.csproj", "{B2649DDB-1D1A-456F-BFF3-AC2686D48EC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockAPI", "StockAPI\StockAPI.csproj", "{B2649DDB-1D1A-456F-BFF3-AC2686D48EC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentAPI", "PaymentAPI\PaymentAPI.csproj", "{064F6E50-958B-4181-940E-E8C859098FAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentAPI", "PaymentAPI\PaymentAPI.csproj", "{064F6E50-958B-4181-940E-E8C859098FAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging.Shared", "Logging.Shared\Logging.Shared.csproj", "{05224D16-02F5-4DDD-8532-D1E9573FB092}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{064F6E50-958B-4181-940E-E8C859098FAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{064F6E50-958B-4181-940E-E8C859098FAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{064F6E50-958B-4181-940E-E8C859098FAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05224D16-02F5-4DDD-8532-D1E9573FB092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05224D16-02F5-4DDD-8532-D1E9573FB092}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05224D16-02F5-4DDD-8532-D1E9573FB092}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05224D16-02F5-4DDD-8532-D1E9573FB092}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

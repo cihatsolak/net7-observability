@@ -1,11 +1,12 @@
 ﻿global using Common.Shared;
 global using Common.Shared.DTOs;
+global using MassTransit;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using OpenTelemetry.Shared;
 global using OrderAPI.Models;
 global using OrderAPI.RequestResponse;
 global using OrderAPI.Services;
+global using Serilog;
 global using StackExchange.Redis;
 global using System.Diagnostics;
-global using MassTransit;
