@@ -7,15 +7,18 @@ public class OrdersController : ControllerBase
     readonly OrderService _orderService;
     readonly RedisService _redisService;
     readonly IPublishEndpoint _publishEndpoint;
+    readonly ILogger<OrdersController> _logger;
 
     public OrdersController(
         OrderService orderService,
         RedisService redisService,
-        IPublishEndpoint publishEndpoint)
+        IPublishEndpoint publishEndpoint,
+        ILogger<OrdersController> logger)
     {
         _orderService = orderService;
         _redisService = redisService;
         _publishEndpoint = publishEndpoint;
+        _logger = logger;
     }
 
     [HttpGet]
@@ -32,6 +35,9 @@ public class OrdersController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(OrderCreateRequest request)
     {
+        //_logger.LogWarning("test 1. {username} {age} {request}", "cihat", 19, request);
+        _logger.LogWarning("test 2. {@request}", request);
+
         var response = await _orderService.AddAsync(request);
 
         return new ObjectResult(response) { StatusCode = response.StatusCode };

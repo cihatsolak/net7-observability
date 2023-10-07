@@ -77,6 +77,11 @@ public static class OpenTelemetryExtensions
 
                     activity.SetTag("http.response.body", responseContent);
                 };
+
+                options.FilterHttpRequestMessage = (context) =>
+                {
+                    return !context.RequestUri.AbsoluteUri.Contains("9200", StringComparison.OrdinalIgnoreCase); //elastic search'e yapılan istekleri loglama
+                };
             });
 
             configure.AddRedisInstrumentation(options =>

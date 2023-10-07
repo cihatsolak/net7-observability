@@ -1,5 +1,3 @@
-using Logging.Shared;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog(Logging.Shared.Logging.ConfigureLogging);
@@ -49,6 +47,7 @@ app.UseHttpsRedirection();
 
 app.UseMiddleware<RequestAndResponseActivityMiddleware>();
 app.UseMiddleware<OpenTelemetryTraceIdMiddleware>();
+app.UseExceptionMiddleware();
 
 app.UseAuthorization();
 

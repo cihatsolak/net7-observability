@@ -1,6 +1,4 @@
-﻿using Serilog.Filters;
-
-namespace Logging.Shared;
+﻿namespace Logging.Shared;
 
 public static class Logging
 {
@@ -12,6 +10,7 @@ public static class Logging
         //.Filter.ByExcluding(Matching.FromSource("System"))
         //.Filter.ByIncludingOnly(Matching.FromSource("Microsoft.Hosting.Lifetime"))
         //.MinimumLevel.Information()
+        .Enrich.With(new ThreadIdEnricher())
         .Enrich.FromLogContext()
         .Enrich.WithExceptionDetails()
         .Enrich.WithProperty("Environment", hostBuilderContext.HostingEnvironment.EnvironmentName)

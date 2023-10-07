@@ -11,3 +11,4 @@ global using OrderAPI.Services;
 global using Serilog;
 global using StackExchange.Redis;
 global using System.Diagnostics;
+global using Logging.Shared;
