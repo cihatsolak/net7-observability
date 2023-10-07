@@ -1,5 +1,4 @@
-﻿using Common.Shared.Events;
-using Order = OrderAPI.Models.Order;
+﻿using Order = OrderAPI.Models.Order;
 
 namespace OrderAPI.Services;
 
@@ -7,13 +6,16 @@ public class OrderService
 {
     private readonly AppDbContext _context;
     private readonly StockService _stockService;
+    private readonly ILogger<OrderService> _logger;
 
     public OrderService(
-        AppDbContext appDbContext, 
-        StockService stockService)
+        AppDbContext appDbContext,
+        StockService stockService,
+        ILogger<OrderService> logger)
     {
         _context = appDbContext;
         _stockService = stockService;
+        _logger = logger;
     }
 
     public async Task<ResponseDto<OrderCreateResponse>> AddAsync(OrderCreateRequest request)
@@ -47,6 +49,8 @@ public class OrderService
         _context.Orders.Add(order);
         _context.SaveChanges();
 
+        _logger.LogInformation("Order completed.  user id: {@userId}", request.UserId);
+
         var stockResponse = await _stockService.CheckAndPaymentStartAsync(new StockCheckAndPaymentProcessRequestDto
         {
             OrderCode = order.Code,
@@ -62,6 +66,6 @@ public class OrderService
 
         activity.AddEvent(new ActivityEvent("The order process is completed."));
 
-        return ResponseDto<OrderCreateResponse>.Success(StatusCodes.Status500InternalServerError, new OrderCreateResponse { Id = order.Id });
+        return ResponseDto<OrderCreateResponse>.Success(StatusCodes.Status200OK, new OrderCreateResponse { Id = order.Id });
     }
 }

@@ -1,14 +1,14 @@
-﻿using System.Diagnostics;
-
-namespace StockAPI.Services;
+﻿namespace StockAPI.Services;
 
 public class StockService
 {
     private readonly PaymentService _paymentService;
+    private readonly ILogger<StockService> _logger;
 
-    public StockService(PaymentService paymentService)
+    public StockService(PaymentService paymentService, ILogger<StockService> logger)
     {
         _paymentService = paymentService;
+        _logger = logger;
     }
 
     public static Dictionary<int, int> GetStocks()
@@ -43,6 +43,8 @@ public class StockService
         {
             return ResponseDto<StockCheckAndPaymentProcessResponseDto>.Fail(StatusCodes.Status400BadRequest, "insufficient stock");
         }
+
+        _logger.LogInformation("stock reserved. Order Code: {@orderCode}", request.OrderCode);
 
         var (succeeded, errorMessage) = _paymentService.CreatePaymentProcessAsync(new PaymentCreateRequestDto
         {

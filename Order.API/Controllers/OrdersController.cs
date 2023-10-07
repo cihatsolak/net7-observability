@@ -1,6 +1,4 @@
-﻿using Common.Shared.Events;
-
-namespace OrderAPI.Controllers;
+﻿namespace OrderAPI.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]

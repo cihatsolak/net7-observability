@@ -1,5 +1,6 @@
 ﻿global using Common.Shared;
 global using Common.Shared.DTOs;
+global using Common.Shared.Events;
 global using MassTransit;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
