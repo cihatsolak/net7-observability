@@ -2,6 +2,18 @@
 
 public static class Logging
 {
+    public static void AddOpenTelemetryLog(this WebApplicationBuilder builder)
+    {
+        string serviceName = builder.Configuration.GetSection("OpenTelemetry")["ServiceName"];
+        string serviceVersion = builder.Configuration.GetSection("OpenTelemetry")["ServiceVersion"];
+
+        builder.Logging.AddOpenTelemetry(cfg =>
+        {
+            cfg.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(serviceName, serviceVersion: serviceVersion));
+            cfg.AddOtlpExporter();
+        });
+    }
+
     public static Action<HostBuilderContext, LoggerConfiguration> ConfigureLogging => (hostBuilderContext, loggerConfiguration) =>
     {
         loggerConfiguration

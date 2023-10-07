@@ -1,6 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.UseSerilog(Logging.Shared.Logging.ConfigureLogging);
+builder.AddOpenTelemetryLog();
+//builder.Host.UseSerilog(Logging.Shared.Logging.ConfigureLogging);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

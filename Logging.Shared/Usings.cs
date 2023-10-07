@@ -1,8 +1,10 @@
 ﻿global using Logging.Shared.Enrichers;
+global using Microsoft.AspNetCore.Builder;
 global using Microsoft.AspNetCore.Http;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Hosting;
 global using Microsoft.Extensions.Logging;
+global using OpenTelemetry.Resources;
 global using Serilog;
 global using Serilog.Core;
 global using Serilog.Events;
@@ -10,3 +12,4 @@ global using Serilog.Exceptions;
 global using Serilog.Formatting.Elasticsearch;
 global using Serilog.Sinks.Elasticsearch;
 global using System.Diagnostics;
+global using OpenTelemetry.Logs;
