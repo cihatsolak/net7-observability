@@ -17,4 +17,36 @@ public class MetricsController : ControllerBase
 
         return Ok();
     }
+
+    [HttpGet]
+    public IActionResult ObservableCounterMetric()
+    {
+        Counters.OrderCancelledCounter = new Random().Next(1, 100);
+
+        return Ok();
+    }
+
+    [HttpGet]
+    public IActionResult UpDowmnCounterMetric()
+    {
+        OpenTelemetryMetric.CurrentStockCounter.Add(new Random().Next(-300, 300)); // - (eksi) değer verebilirim.
+
+        return Ok();
+    }
+
+    [HttpGet]
+    public IActionResult ObservableUpDowmnCounterMetric()
+    {
+        Counters.CurrentCountStock += new Random().Next(-300, 300); // - (eksi) değer verebilirim.
+
+        return Ok();
+    }
+
+    [HttpGet]
+    public IActionResult ObservableGaugeMetric()
+    {
+        Counters.KitchenTemperature += new Random().Next(-30, 60);
+
+        return Ok();
+    }
 }
