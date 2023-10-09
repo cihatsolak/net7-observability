@@ -30,4 +30,7 @@ public static class OpenTelemetryMetric
         {
             return new Measurement<int>(Counters.KitchenTemperature);
         });
+
+    //Histogram 
+    public static Histogram<int> MethodDuration = Meter.CreateHistogram<int>("x.method.duration", unit: "milliseconds");
 }

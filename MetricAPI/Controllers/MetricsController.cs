@@ -49,4 +49,12 @@ public class MetricsController : ControllerBase
 
         return Ok();
     }
+
+    [HttpGet]
+    public IActionResult HistogramMetric()
+    {
+        OpenTelemetryMetric.MethodDuration.Record(new Random().Next(500, 50000));
+       
+        return Ok();
+    }
 }
