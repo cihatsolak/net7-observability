@@ -1,48 +1,14 @@
 version: '3.4'
 
 services:
-  jeager:
-    container_name: "jeager-tracking"
-    ports:
-     - 4317:4317 #grpc
-     - 4318:4318 #http
-     - 16686:16686 #ui
-
-  #zipkin:
-  #  container_name: zipking-tracking
-  #  ports:
-  #   - 9411:9411
+  metric.api:
+   container_name: metric-api
+   ports:
+    - 5010:80 
   
-  #redis:
-  # ports:
-  #  - 6379:6379 
-
-  rabbitmq:
-    container_name: rabbit
-    ports:
-    - 5672:5672
-    - 15672:15672
-
-  elasticsearch:
-    container_name: elasticsearch
-    ports:
-     - 9200:9200
-    environment:
-     - xpack.security.enabled=false #https kullanmadigimiz icin
-     - "discovery.type=single-node" #tek portta calisacak tek bir container
-     - ELASTIC_USERNAME=elastic #default username
-     - ELASTIC_PASSWORD=DkIedPPSCb #password
-    volumes:
-     - elastic_db:/usr/share/elasticsearch/data
-
-  kibana:
-    container_name: kibana
-    ports:
-     - 5601:5601
-    environment:
-     - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-    depends_on:
-     - elasticsearch
-
-volumes:
-  elastic_db:
+  prometheus:
+   container_name: prometheus
+   ports:
+    - 9090:9090 
+   volumes: 
+    - ./prometheus.yml:/etc/prometheus/prometheus.yml 
